@@ -31,7 +31,7 @@ import (
 	"net"
 	"os"
 
-	"github.com/campoy/whispering-gophers/util"
+	"github.com/mcai4gl2/whispering-gophers/util"
 )
 
 var (

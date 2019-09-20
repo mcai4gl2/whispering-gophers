@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/campoy/whispering-gophers/util"
+	"github.com/mcai4gl2/whispering-gophers/util"
 )
 
 func main() {

@@ -14,7 +14,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/campoy/whispering-gophers/util"
+	"github.com/mcai4gl2/whispering-gophers/util"
 	"golang.org/x/net/websocket"
 )
 
