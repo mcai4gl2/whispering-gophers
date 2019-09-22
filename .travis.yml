@@ -1,0 +1,8 @@
+language: go
+
+go:
+  - 1.13.x
+
+script:
+  - cd hello && go install .
+  - co skeleton/part1 && go install .
