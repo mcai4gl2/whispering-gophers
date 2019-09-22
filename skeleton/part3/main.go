@@ -18,6 +18,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"io"
 	"log"
 	"net"
 )
@@ -52,6 +53,10 @@ func serve(c net.Conn) {
 	for {
 		var message Message
 		if err := decoder.Decode(&message); err != nil {
+			if err == io.EOF {
+				log.Println("client disconnect")
+				return
+			}
 			log.Fatal(err)
 		}
 		fmt.Println("Got mesage: " + message.Body)
