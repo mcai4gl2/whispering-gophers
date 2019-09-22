@@ -30,8 +30,8 @@ import (
 	"log"
 	"net"
 	"os"
-
-	"github.com/mcai4gl2/whispering-gophers/util"
+	"strconv"
+	//"github.com/mcai4gl2/whispering-gophers/util"
 )
 
 var (
@@ -47,9 +47,13 @@ type Message struct {
 func main() {
 	flag.Parse()
 
-	// TODO: Create a new listener using util.Listen and put it in a variable named l.
-	// TODO: Set the global variable self with the address of the listener.
-	// TODO: Print the address to the standard output
+	l, err := net.Listen("tcp", ":0")
+	if err != nil {
+		log.Fatal(err)
+	}
+	self = "localhost:" + strconv.Itoa(l.Addr().(*net.TCPAddr).Port)
+
+	fmt.Println("Listening on: " + self)
 
 	go dial(*peerAddr)
 
@@ -86,7 +90,7 @@ func dial(addr string) {
 	e := json.NewEncoder(c)
 	for s.Scan() {
 		m := Message{
-			// TODO: Put the self variable in the new Addr field.
+			Addr: self,
 			Body: s.Text(),
 		}
 		err := e.Encode(m)
