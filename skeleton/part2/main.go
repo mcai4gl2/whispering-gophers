@@ -35,11 +35,11 @@ func main() {
 	flag.Parse()
 
 	c, err := net.Dial("tcp", *dialAddr)
-	defer c.Close()
-
 	if err != nil {
 		log.Fatal(err)
 	}
+	// Defer close needs to be done after the err check to avoid close on nil
+	defer c.Close()
 
 	s := bufio.NewScanner(os.Stdin)
 	encoder := json.NewEncoder(c)
